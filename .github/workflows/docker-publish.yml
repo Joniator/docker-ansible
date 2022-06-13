@@ -33,7 +33,7 @@ jobs:
 
       # Login against ghcr
       - name: Log into ghcr
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
         with:
           registry: ghcr.io
@@ -42,7 +42,7 @@ jobs:
 
       # Login against docker hub
       - name: Login to Docker Hub
-        if: github.event_name != 'pull_request'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: docker/login-action@49ed152c8eca782a232dede0303416e8f356c37b
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -85,11 +85,12 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.ref == 'refs/heads/main' && github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Update Docker-Hub README
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: meeDamian/sync-readme@v1.0.6
         with:
           user: ${{ secrets.DOCKERHUB_USERNAME }}
