@@ -29,7 +29,7 @@ jobs:
         uses: docker/setup-qemu-action@v2
         
       - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
+        uses: docker/setup-buildx-action@dc7b9719a96d48369863986a06765841d7ea23f6
 
       # Login against ghcr
       - name: Log into ghcr
