@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.15.6
 
 LABEL maintainer="Jonatha Boeckel <jonnyb@jonnyb.name>"
 
