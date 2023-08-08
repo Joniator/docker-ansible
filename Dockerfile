@@ -1,4 +1,4 @@
-FROM alpine:3.18.0
+FROM alpine:3.18.3
 
 LABEL maintainer="Jonathan Boeckel <jonnyb@jonnyb.name>"
 
